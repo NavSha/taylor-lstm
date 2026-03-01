@@ -1,0 +1,72 @@
+# Taylor Swift Lyrics Generator
+
+A character-level LSTM that generates Taylor Swift-style lyrics, trained on her discography (75 songs across 9 albums).
+
+## How It Works
+
+1. **Scrape** lyrics from Genius.com
+2. **Preprocess** into character-level sequences (91-char vocabulary)
+3. **Train** a 2-layer LSTM (embedding → LSTM → linear)
+4. **Generate** new lyrics from a seed phrase using temperature-controlled sampling
+
+## Quick Start
+
+```bash
+# Setup
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+
+# Scrape lyrics (already included in data/)
+python scrape_lyrics.py
+
+# Train (takes ~30 min on Apple Silicon)
+python train.py
+
+# Generate
+python generate.py                          # Interactive mode
+python generate.py --seed "I remember"      # One-shot
+
+# Web UI
+pip install streamlit
+streamlit run app.py
+```
+
+## Model
+
+| Parameter | Value |
+|-----------|-------|
+| Architecture | CharLSTM |
+| Embedding dim | 128 |
+| Hidden size | 256 |
+| Layers | 2 |
+| Dropout | 0.2 |
+| Optimizer | Adam (lr=0.001) |
+| Epochs | 50 |
+| Best loss | ~0.53 |
+
+## Project Structure
+
+```
+├── scrape_lyrics.py   # Genius.com scraper
+├── preprocess.py      # LyricsDataset (sliding window sequences)
+├── model.py           # CharLSTM definition
+├── train.py           # Training loop
+├── generate.py        # CLI inference
+├── app.py             # Streamlit web UI
+├── data/lyrics.txt    # Lyrics corpus
+└── checkpoints/       # Saved models + vocab
+```
+
+## Generation Examples
+
+```
+Seed: "I remember when"
+Temperature: 0.8
+
+I remember when we were sitting on the stairs
+and you told me that you loved me
+but I was too afraid to say it back
+so I watched you drive away...
+```
+
+> Note: output varies due to temperature sampling. Lower temperature (0.2–0.5) = more predictable, higher (0.8–1.5) = more creative.

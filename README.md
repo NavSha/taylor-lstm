@@ -57,16 +57,17 @@ streamlit run app.py
 └── checkpoints/       # Saved models + vocab (not in repo)
 ```
 
-## Generation Examples
+## Sample Output
 
 ```
-Seed: "I remember when"
-Temperature: 0.8
+Seed: "I remember when"   Temperature: 0.8
 
-I remember when we were sitting on the stairs
-and you told me that you loved me
-but I was too afraid to say it back
-so I watched you drive away...
+I remember when my see someren up my mared or some day
+Cut see me so pushs good somering ausuved and you do
+You stand ul may name along it all never see me a quecess ou puts me me somethin'
+The more some single there's making my post girs are push some home
 ```
 
-> Note: output varies due to temperature sampling. Lower temperature (0.2–0.5) = more predictable, higher (0.8–1.5) = more creative.
+The output is rough — this is a small character-level model trained on limited data. It picks up patterns like line structure, rhyme-like endings, and Taylor-ish phrasing, but doesn't produce coherent lyrics. A fun learning project, not a production model.
+
+> Lower temperature (0.2–0.5) = more repetitive but structured. Higher (0.8–1.5) = more varied but noisier.

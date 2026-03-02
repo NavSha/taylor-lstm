@@ -3,4 +3,5 @@ __pycache__/
 *.pyc
 checkpoints/*.pt
 data/
+runs/
 .DS_Store

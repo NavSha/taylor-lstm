@@ -1,6 +1,7 @@
 import os
 import torch
 import torch.nn as nn
+from torch.utils.tensorboard import SummaryWriter
 from preprocess import get_dataloader
 from model import CharLSTM
 
@@ -59,6 +60,10 @@ def train():
 
     best_loss = float("inf")
 
+    writer = SummaryWriter("runs")
+    writer.add_graph(model, torch.zeros(1, SEQ_LENGTH, dtype=torch.long, device=device))
+    global_step = 0
+
     # Training loop
     for epoch in range(1, EPOCHS + 1):
         model.train()
@@ -79,6 +84,8 @@ def train():
 
             total_loss += loss.item()
             batch_count += 1
+            global_step += 1
+            writer.add_scalar("Loss/batch", loss.item(), global_step)
 
             if batch_idx % PRINT_EVERY == 0:
                 avg = total_loss / batch_count
@@ -86,6 +93,8 @@ def train():
 
         avg_loss = total_loss / batch_count
         print(f"Epoch {epoch}/{EPOCHS} — Avg Loss: {avg_loss:.4f} (lr: {optimizer.param_groups[0]['lr']:.6f})")
+        writer.add_scalar("Loss/epoch", avg_loss, epoch)
+        writer.add_scalar("LR", optimizer.param_groups[0]["lr"], epoch)
         scheduler.step(avg_loss)
 
         # Save checkpoint
@@ -112,6 +121,7 @@ def train():
             }, path)
             print(f"  Saved checkpoint: {path}")
 
+    writer.close()
     print("Training complete!")
 
 

@@ -21,28 +21,60 @@ HEADERS = {
                   "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 }
 
-# Key songs from each major album — enough for good training data
+# Comprehensive Taylor Swift discography for maximum training data
 SONGS = [
     # Taylor Swift (Debut)
     "tim-mcgraw", "teardrops-on-my-guitar", "our-song", "picture-to-burn",
-    "shouldve-said-no", "cold-as-you", "stay-beautiful", "mary-s-song-oh-my-my-my",
+    "shouldve-said-no", "cold-as-you", "stay-beautiful", "marys-song-oh-my-my-my",
+    "a-place-in-this-world", "the-outside", "tied-together-with-a-smile",
     # Fearless
     "fearless", "fifteen", "love-story", "white-horse", "you-belong-with-me",
     "breathe", "tell-me-why", "youre-not-sorry", "the-way-i-loved-you",
     "forever-and-always", "the-best-day", "jump-then-fall",
+    # Fearless TV vault tracks
+    "you-all-over-me-taylors-version-from-the-vault",
+    "mr-perfectly-fine-taylors-version-from-the-vault",
+    "thats-when-taylors-version-from-the-vault",
+    "we-were-happy-taylors-version-from-the-vault",
+    "dont-you-taylors-version-from-the-vault",
+    "bye-bye-baby-taylors-version-from-the-vault",
     # Speak Now
     "mine", "sparks-fly", "back-to-december", "speak-now", "dear-john",
     "mean", "the-story-of-us", "never-grow-up", "enchanted", "last-kiss",
     "long-live", "haunted", "innocent",
+    # Speak Now TV vault tracks
+    "electric-touch-taylors-version-from-the-vault",
+    "when-emma-falls-in-love-taylors-version-from-the-vault",
+    "i-can-see-you-taylors-version-from-the-vault",
+    "castles-crumbling-taylors-version-from-the-vault",
+    "foolish-one-taylors-version-from-the-vault",
+    "timeless-taylors-version-from-the-vault",
     # Red
     "state-of-grace", "red", "treacherous", "i-knew-you-were-trouble",
     "all-too-well", "22", "i-almost-do", "we-are-never-ever-getting-back-together",
     "stay-stay-stay", "the-last-time", "holy-ground", "sad-beautiful-tragic",
     "the-lucky-one", "everything-has-changed", "starlight", "begin-again",
+    # Red TV vault tracks
+    "better-man-taylors-version-from-the-vault",
+    "nothing-new-taylors-version-from-the-vault",
+    "babe-taylors-version-from-the-vault",
+    "message-in-a-bottle-taylors-version-from-the-vault",
+    "i-bet-you-think-about-me-taylors-version-from-the-vault",
+    "forever-winter-taylors-version-from-the-vault",
+    "run-taylors-version-from-the-vault",
+    "the-very-first-night-taylors-version-from-the-vault",
+    "all-too-well-10-minute-version-taylors-version-from-the-vault",
     # 1989
     "welcome-to-new-york", "blank-space", "style", "out-of-the-woods",
     "shake-it-off", "i-wish-you-would", "bad-blood", "wildest-dreams",
     "how-you-get-the-girl", "this-love", "clean", "new-romantics",
+    "all-you-had-to-do-was-stay", "you-are-in-love", "wonderland",
+    # 1989 TV vault tracks
+    "is-it-over-now-taylors-version-from-the-vault",
+    "now-that-we-dont-talk-taylors-version-from-the-vault",
+    "say-dont-go-taylors-version-from-the-vault",
+    "suburban-legends-taylors-version-from-the-vault",
+    "slut-taylors-version-from-the-vault",
     # Reputation
     "ready-for-it", "end-game", "i-did-something-bad",
     "dont-blame-me", "delicate", "look-what-you-made-me-do",
@@ -55,24 +87,48 @@ SONGS = [
     "paper-rings", "cornelia-street", "death-by-a-thousand-cuts",
     "london-boy", "soon-youll-get-better", "afterglow",
     "me", "you-need-to-calm-down", "daylight",
+    "false-god", "its-nice-to-have-a-friend",
     # Folklore
     "the-1", "cardigan", "the-last-great-american-dynasty",
     "exile", "my-tears-ricochet", "mirrorball", "seven",
     "august", "this-is-me-trying", "illicit-affairs",
     "invisible-string", "mad-woman", "epiphany",
-    "betty", "peace", "hoax",
+    "betty", "peace", "hoax", "the-lakes",
     # Evermore
     "willow", "champagne-problems", "gold-rush",
     "tis-the-damn-season", "tolerate-it", "no-body-no-crime",
     "happiness", "dorothea", "coney-island",
     "ivy", "cowboy-like-me", "long-story-short",
     "marjorie", "closure", "evermore",
+    "right-where-you-left-me", "its-time-to-go",
     # Midnights
     "lavender-haze", "maroon", "anti-hero",
     "snow-on-the-beach", "youre-on-your-own-kid", "midnight-rain",
     "question", "vigilante-shit", "bejeweled",
     "labyrinth", "karma", "sweet-nothing",
-    "mastermind", "would-ve-could-ve-should-ve",
+    "mastermind", "wouldve-couldve-shouldve",
+    # The Tortured Poets Department (standard)
+    "fortnight", "the-tortured-poets-department",
+    "my-boy-only-breaks-his-favorite-toys", "down-bad",
+    "so-long-london", "but-daddy-i-love-him",
+    "fresh-out-the-slammer", "florida",
+    "guilty-as-sin", "whos-afraid-of-little-old-me",
+    "i-can-fix-him-no-really-i-can", "loml",
+    "i-can-do-it-with-a-broken-heart",
+    "the-smallest-man-who-ever-lived",
+    "the-alchemy", "clara-bow",
+    # The Tortured Poets Department (Anthology)
+    "the-black-dog", "imgonnagetyouback", "the-albatross",
+    "chloe-or-sam-or-sophia-or-marcus", "how-did-it-end",
+    "so-high-school", "i-hate-it-here", "thank-you-aimee",
+    "i-look-in-peoples-windows", "the-prophecy",
+    "cassandra", "peter", "the-bolter", "robin", "the-manuscript",
+    # Soundtrack / standalone singles
+    "safe-and-sound", "eyes-open", "beautiful-ghosts",
+    "only-the-young", "christmas-tree-farm",
+    # Holiday
+    "christmases-when-you-were-mine", "christmas-must-be-something-more",
+    "last-christmas", "santa-baby", "silent-night", "white-christmas",
 ]
 
 
